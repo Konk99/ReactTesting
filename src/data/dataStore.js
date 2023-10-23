@@ -206,7 +206,7 @@ export const aboutData = {
       ]
     },
   ],
-  imfSource: 'src/images/team2.jpg',
+  imfSource: '../src/images/team2.jpg',
   secondBlocks: [
     {
       key: 0,
@@ -258,7 +258,7 @@ export const aboutData = {
       ]
     },
   ],
-  music: 'src/vendor/Jim Yosef - Stamp On The Ground.mp3',
+  music: '../src/vendor/Jim Yosef - Stamp On The Ground.mp3',
 }
 
 export const projectData = {
