@@ -26,6 +26,7 @@ class Login extends React.Component {
             
             if(text.value.match(mailformat) || text.value.match(mailformat2)){
                 document.querySelector('dialog').setAttribute('data-login', 'true');
+                document.getElementById('loginShowButton').innerHTML = 'Zalogowany';
                 this.closeDialog();
             }
         }

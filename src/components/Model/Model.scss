@@ -133,7 +133,19 @@ canvas {
 }
 
 @media screen and (max-width: 640px) {
-    #model {
-        display: none;
+    .model {
+        height: 20vh;
+
+        > div:nth-of-type(2) {
+            display: none;
+        }
+
+        > div:nth-of-type(3) {
+            display: none;
+        }
+
+        > a {
+            display: none;
+        }
     }
 }

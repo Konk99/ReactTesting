@@ -5,6 +5,7 @@ import {OrbitControls} from '../../vendor/three/examples/jsm/controls/OrbitContr
 import { FontLoader } from '../../vendor/three/examples/jsm/loaders/FontLoader.js';
 import { GLTFLoader } from '../../vendor/three/examples/jsm/loaders/GLTFLoader.js';
 import { TextGeometry } from '../../vendor/three/examples/jsm/geometries/TextGeometry.js';
+import Flip from '../Flip/Flip';
 
 
 class Model extends React.Component {
@@ -213,13 +214,15 @@ class Model extends React.Component {
                 );
             }
         }
-    
+        
         window.addEventListener('resize', () => {
-            camera.aspect = container.innerWidth/ container.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.innerWidth, container.innerHeight);
-
-            document.getElementById('showModel').click();
+            if(document.querySelector('canvas')){
+                camera.aspect = container.innerWidth/ container.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.innerWidth, container.innerHeight);
+    
+                document.getElementById('showModel').click();
+            }
         });
 
         const renderer = new THREE.WebGLRenderer({antialias:true});
@@ -227,7 +230,7 @@ class Model extends React.Component {
         renderer.setSize(innerWidth, innerHeight);
         //renderer.domElement.id = 'model';
         //document.body.appendChild(container);
-        container.children[0].appendChild(renderer.domElement);
+        container.children[1].appendChild(renderer.domElement);
     
         const offsetHeight = container.offsetHeight;
         const offsetWidth = container.offsetWidth;
@@ -262,10 +265,14 @@ class Model extends React.Component {
         //const cameraHelper = new THREE.CameraHelper(camera2);
         //scene.add(cameraHelper);
     
-
-
+        let animationLoop = null;
+        renderer.dispose();
         function animate() {
-            
+            if(animationLoop){
+                cancelAnimationFrame(animationLoop)
+            }
+            animationLoop = requestAnimationFrame(() => animate());
+
             renderer.clear();
     
             clock.getDelta();
@@ -308,18 +315,31 @@ class Model extends React.Component {
             }
             
     
-            if(document.querySelector('canvas')){
-                requestAnimationFrame(animate);
-            }
+            // if(document.querySelector('canvas')){
+            //     requestAnimationFrame(animate);
+            // }
     
         }
         //this.setState({clicked: true})
+        const stopAnimatioLoop = () => {
+            cancelAnimationFrame(animationLoop);
+            console.log('it works!');
+        }
         animate();
+        // setTimeout(() => {stopAnimatioLoop()}, 3000);
+    
+        const buttons = document.getElementById('model').querySelectorAll('a');
+        buttons.forEach(element => {
+            element.addEventListener('click', () => {
+                stopAnimatioLoop();
+            });
+        });
     };
 
     render() {
         return (
             <div id = 'model' style={{display: 'none'}} className = {styles.model}>
+                <Flip />
                 <div />
                 <div  id="textHolder" className = {styles.nonVisible}>
                     <p className = {styles.model3d}>Model trójwymiarowy</p>
