@@ -44,6 +44,40 @@ class Main extends React.Component {
 
         inp.parentNode.appendChild(a);
 
+        if(value == 'Bob'){
+            if(inp.id == 'start'){
+                this.setState({idStart: 78});
+                // placeInfo(inp, idStart, arr);
+                if(inp.value != ''){
+                    // howManyChosens(true);
+                }
+            } else{
+                this.setState({idEnd: 78});
+                // placeInfo(inp, idEnd, arr);
+                //buttons[0].click();
+            }
+            closeAllLists();
+            // wrapperVisibility(true, inp.getAttribute('id'));
+            // resizeMe.call(inp);
+        }
+
+        if(value == "It's him"){
+            if(inp.id == 'start'){
+                this.setState({idStart: 999});
+                // placeInfo(inp, idStart, arr);
+                if(inp.value != ''){
+                    // howManyChosens(true);
+                }
+            } else{
+                this.setState({idEnd: 999});
+                // placeInfo(inp, idEnd, arr);
+                //buttons[0].click();
+            }
+            closeAllLists();
+            // wrapperVisibility(true, inp.getAttribute('id'));
+            // resizeMe.call(inp);
+        }
+
         for(i = 0; i < arr.length; i++){
             if(arr[i]['name'].substr(0, value.length).toUpperCase() == value.toUpperCase()){
                 b = document.createElement('DIV');
