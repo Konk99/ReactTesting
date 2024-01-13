@@ -714,6 +714,36 @@
             "name": "Bob",
             "id": 78,
             "level": 2
+        },
+        {
+            "name": "-1-hol",
+            "id": 141,
+            "level": -1
+        },
+        {
+            "name": "0-hol",
+            "id": 142,
+            "level": 0
+        },
+        {
+            "name": "1-hol",
+            "id": 143,
+            "level": 1
+        },
+        {
+            "name": "2-hol",
+            "id": 144,
+            "level": 2
+        },
+        {
+            "name": "3-hol",
+            "id": 145,
+            "level": 3
+        },
+        {
+            "name": "4-hol",
+            "id": 146,
+            "level": 4
         }
     ]
 }

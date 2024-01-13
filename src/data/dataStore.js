@@ -31,11 +31,20 @@ export const pageContents = {
       key: 3,
       href: '.',
       text: 'Main',
+    },
+    {
+      key: 4,
+      href: 'view',
+      text: 'View',
+    },
+    {
+      key: 5,
+      href: 'pathfinding',
+      text: 'PathFinding',
     }
   ],
   login: 'Zaloguj się',
-  subtitle: 'A simple to-do app, with lists, columns and cards',
-  footer: 'SKN Geodetów Uniwersytetu Przyrodniczego we Wrocławiu &copy; 2022-2023. All rights reserved',
+  footer: 'SKN Geodetów Uniwersytetu Przyrodniczego we Wrocławiu &copy; 2022-2024. All rights reserved',
 };
 
 export const contactData = {
