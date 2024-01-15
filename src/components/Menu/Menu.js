@@ -18,9 +18,12 @@ class Menu extends React.Component {
     }
 
     animate = () => {
-        
-        const arrow = document.getElementById('arrow').getAnimations()[0];
-        setInterval ( () => {arrow.play()}, 6000);
+        setTimeout( () => {
+            setInterval ( () => {
+                const arrow = document.getElementById('arrow').getAnimations()[0];
+                // arrow.play()
+            }, 6000);
+        }, 1000);
     }
 
     render() {
