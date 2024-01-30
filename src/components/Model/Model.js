@@ -8,6 +8,7 @@ import { TextGeometry } from '../../vendor/three/examples/jsm/geometries/TextGeo
 import Flip from '../Flip/Flip';
 import { Trans } from 'react-i18next';
 import { render } from 'react-dom';
+import { withTranslation } from 'react-i18next';
 
 class Model extends React.Component {
     state = {
@@ -58,11 +59,13 @@ class Model extends React.Component {
         const camera2 = new THREE.OrthographicCamera(1, 350, -1, -850, 1, 50);
         camera2.position.x = 170;
         camera2.position.y = 50 + 50 * container.getAttribute('data-start');
+        // console.log('camera start', camera2.position)
         camera2.position.z = 15;
     
         const camera3 = new THREE.OrthographicCamera(1, 350, -1, -850, 1, 50);
         camera3.position.x = camera2.position.x;
         camera3.position.y = 50 + 50 * container.getAttribute('data-end');
+        // console.log('camera end', camera3.position)
         camera3.position.z = camera2.position.z;
     
         const camera4 = new THREE.OrthographicCamera(1, 850, -1, -350, 1, 5000);
@@ -220,7 +223,12 @@ class Model extends React.Component {
                     position.geometry.computeBoundingBox();
                     // ;
                     // position.geometry.center
-                    console.log(position.geometry.boundingBox.getCenter(center));
+                    // console.log(position.geometry.boundingBox.max);
+                    // console.log(position.geometry.boundingBox.min);
+                    // camera2.position.x = (position.geometry.boundingBox.max.x - position.geometry.boundingBox.min.x) / 2 * .1;
+                    // camera2.position.y = (position.geometry.boundingBox.min.z - position.geometry.boundingBox.max.z) * .1;
+                    // camera2.position.z = (Math.abs(position.geometry.boundingBox.max.y) - Math.abs(position.geometry.boundingBox.min.y)) / 4 * .01;
+                    //Tak jakby działa to na wyszukiwanie odpowiedniej wysokości kamery dla piętra
                     //animate();
                     },
     
@@ -354,16 +362,17 @@ class Model extends React.Component {
     };
 
     render() {
+        const {t} = this.props;
         return (
             <div id = 'model' style={{display: 'none'}} className = {styles.model}>
                 <Flip />
                 <div />
                 <div  id="textHolder" className = {styles.nonVisible}>
-                    <p className = {styles.model3d}>Model trójwymiarowy</p>
-                    <p className = {styles.sideView}>Widok pięter z boku</p>
-                    <p className = {styles.mini3d}>Model trójwymiarowy<span></span></p>
-                    <p className = {styles.floorStart}>Piętro startowe<span></span></p>
-                    <p className = {styles.floorEnd}>Piętro końcowe<span></span></p>
+                    <p className = {styles.model3d}>Model 3D</p>
+                    <p className = {styles.sideView}>{t('modelData.sideView')}</p>
+                    <p className = {styles.mini3d}>Model 3D<span></span></p>
+                    <p className = {styles.floorStart}>{t('modelData.startFloor')}<span></span></p>
+                    <p className = {styles.floorEnd}>{t('modelData.endFloor')}<span></span></p>
                 </div>
                 <a id = 'showModel' onClick = {() => this.loadPath()}>Model</a>
                 <a onClick = {() => this.loadPath(true)}>Orto</a>
@@ -372,4 +381,4 @@ class Model extends React.Component {
     }
 }
 
-export default Model;
+export default withTranslation()(Model);
